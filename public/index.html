@@ -84,25 +84,13 @@ svg{ display:block; }
   pointer-events:none;
 }
 
-/* hero layer: full-bleed (edge to edge, no frame), stepped light bars on both sides */
+/* hero layer: full-bleed animated background video (Higgsfield-hosted, 16:9 = 1778u x 1000u) */
 .panel{
   position:absolute; z-index:-1; top:0; left:0; right:0;
-  height:calc(var(--u) * 655); pointer-events:none; overflow:hidden;
+  height:calc(var(--u) * 1000); pointer-events:none; overflow:hidden;
+  -webkit-mask-image:linear-gradient(#000 82%, transparent); mask-image:linear-gradient(#000 82%, transparent);
 }
-.panel::before{                      /* faint light spill along the top edge */
-  content:""; position:absolute; inset:0 0 auto; height:calc(var(--u) * 105);
-  background:linear-gradient(rgba(40,70,25,.24), rgba(40,70,25,0));
-}
-/* bar geometry in reference px of a 1778-wide page; outer bars run to the screen edge */
-.bar{ position:absolute; top:0; height:var(--h); width:calc(var(--w) * 100% / 1778);
-  background:linear-gradient(var(--c), rgba(9,9,9,0)); }
-.bar.l{ left:calc(var(--x) * 100% / 1778); } .bar.r{ right:calc(var(--x) * 100% / 1778); }
-.b1{ --x:0;   --w:93; --h:calc(var(--u) * 430); --c:#2a4b1b; }
-.b2{ --x:93;  --w:80; --h:calc(var(--u) * 360); --c:#25451a; }
-.b3{ --x:173; --w:80; --h:calc(var(--u) * 288); --c:#253e18; }
-.b4{ --x:253; --w:80; --h:calc(var(--u) * 216); --c:#213616; }
-.b5{ --x:333; --w:84; --h:calc(var(--u) * 156); --c:#1d2f14; }
-.bar.r.b1{ --w:98; } .bar.r.b2{ --x:98; --w:80; } .bar.r.b3{ --x:178; --w:83; } .bar.r.b4{ --x:261; --w:80; } .bar.r.b5{ --x:341; --w:84; }
+.panel video{ display:block; width:100%; height:100%; object-fit:fill; }
 
 /* ==========================================================================
    GLASS (shared)
@@ -261,7 +249,6 @@ h1{
   .drawer .lang{ width:auto; margin:0; padding:0 0 0 14px; }
   .drawer .btn-ghost{ display:inline-flex; width:auto; margin:0; }
   .hero{ padding-top:clamp(90px, 14vw, 150px); }
-  .panel{ height:min(655px, 120vw); }
 }
 @media (max-width: 899.98px){ .cats{ grid-template-columns:1fr; } }
 
@@ -313,8 +300,9 @@ h1{
 <body>
 <div class="page">
   <div class="panel" aria-hidden="true">
-    <i class="bar l b1"></i><i class="bar l b2"></i><i class="bar l b3"></i><i class="bar l b4"></i><i class="bar l b5"></i>
-    <i class="bar r b1"></i><i class="bar r b2"></i><i class="bar r b3"></i><i class="bar r b4"></i><i class="bar r b5"></i>
+    <video autoplay muted loop playsinline preload="auto"
+      poster="https://d2ol7oe51mr4n9.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/3af99f28-9ba2-46b8-92a3-0ec36c34ddcf.png"
+      src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20261012_095156_ae558deb-59a9-4e1e-b92b-4a425c6246e6.mp4"></video>
   </div>
 
   <nav class="nav" id="nav" aria-label="Primary">
